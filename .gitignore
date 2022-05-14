@@ -1,0 +1,14 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.env
+.prettierignore
+yarn-debug.log*
+yarn-error.log*

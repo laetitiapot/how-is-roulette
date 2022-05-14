@@ -1,0 +1,72 @@
+@import "~antd/dist/antd.css";
+
+@keyframes slide {
+  from {
+    transform: translateX(-200%);
+  }
+
+  to {
+    transform: translateX(2000%);
+  }
+}
+
+@keyframes slide2 {
+  from {
+    transform: translateX(-400px);
+  }
+
+  to {
+    transform: translateX(900px);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(35deg);
+  }
+}
+
+.App {
+  text-align: center;
+  background-color: #282c34;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  font-family: monospace;
+}
+
+.ant-btn-ghost {
+  color: white;
+}
+
+.App-logo {
+  height: 90px;
+}
+
+.ribbon,
+.ribbon2 {
+  display: flex;
+}
+
+.ribbon > .App-logo {
+  animation: rotate 1.5s infinite both steps(2, start);
+}
+
+.ribbon2 > .App-logo {
+  animation: rotate 1.5s infinite reverse steps(2, start);
+}
+
+.App-content {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
