@@ -1,6 +1,7 @@
 {
   "name": "how-is-roulette",
   "version": "0.1.0",
+  "homepage": "https://laetitiapot.github.io/how-is-roulette",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
