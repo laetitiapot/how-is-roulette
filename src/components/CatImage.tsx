@@ -31,7 +31,7 @@ const CatImage = ({ askCount, catName, onImgReady }: CatImageProps) => {
     setTimeout(() => {
       setImg(image);
       onImgReady();
-    }, 900);
+    }, 2000);
   }, [askCount, catName, onImgReady]);
 
   if (!img) return null;
