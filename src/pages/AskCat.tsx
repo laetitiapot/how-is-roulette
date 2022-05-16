@@ -16,6 +16,7 @@ const AskCat = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [askCount, setAskCount] = useState(0);
   const [imgIsReady, setImgIsReady] = useState(false);
+  const [imgsCount, setImgsCount] = useState(0);
 
   const handleAskCat = () => {
     setIsVisible(!isVisible);
@@ -38,9 +39,9 @@ const AskCat = () => {
               imgIsReady={imgIsReady}
             />
             <CatImage
-              onImgReady={() => setImgIsReady(true)}
+              onImgReady={(_count) => {setImgIsReady(true); setImgsCount(_count)}}
               askCount={askCount}
-              catName={"roulette/roulette"}
+              catName={"Roulette"}
             />
             <div
               style={{
@@ -50,7 +51,7 @@ const AskCat = () => {
                 marginTop: "20px",
               }}
             >
-              {askCount < 5 ? (
+              {askCount < imgsCount ? (
                 <Button
                   type="ghost"
                   size="large"

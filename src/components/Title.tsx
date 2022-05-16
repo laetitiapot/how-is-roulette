@@ -32,20 +32,12 @@ const Title = ({ askCount, catName, imgIsReady }: TitleProps) => {
   const [title, setTitle] = useState(randomTitle);
 
   useEffect(() => {
-    if (imgIsReady) {
-      setTitle(getRandom(titles));
-      clearTimeout(timeout);
-    }
-  }, [imgIsReady, titles]);
-
-  useEffect(() => {
     let increment = 0;
     const getTitle = () => {
-      if (imgIsReady) return;
       ++increment;
       setTitle(getRandom(titles));
       timeout = setTimeout(getTitle, 50);
-      if (increment > 10) {
+      if (imgIsReady || increment > 12) {
         clearTimeout(timeout);
       }
     };
