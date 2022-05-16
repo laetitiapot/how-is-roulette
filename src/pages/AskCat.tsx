@@ -1,8 +1,8 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Button } from "antd";
-// import { RightOutlined } from "@ant-design/icons";
+import { RightOutlined } from "@ant-design/icons";
 import { LeftOutlined } from "@ant-design/icons";
 import Title from "../components/Title";
 import CatImage from "../components/CatImage";
@@ -12,7 +12,7 @@ import catHead2 from "../images/whitecat.png";
 import "../App.css";
 
 const AskCat = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [askCount, setAskCount] = useState(0);
   const [imgIsReady, setImgIsReady] = useState(false);
@@ -76,7 +76,7 @@ const AskCat = () => {
                   Go Back
                 </Button>
               )}
-              {/* {!!askCount && (
+              {!!askCount && (
                 <Button
                   type="ghost"
                   size="large"
@@ -89,7 +89,7 @@ const AskCat = () => {
                   Check others cats
                   <RightOutlined />
                 </Button>
-              )} */}
+              )}
             </div>
           </>
         )}
