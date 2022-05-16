@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "antd";
-import { RightOutlined } from "@ant-design/icons";
-import { LeftOutlined } from "@ant-design/icons";
+import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 import Title from "../components/Title";
 import CatImage from "../components/CatImage";
 
