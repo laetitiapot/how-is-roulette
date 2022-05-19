@@ -1,65 +1,86 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { CloudinaryContext, Image } from "cloudinary-react";
 import { Button } from "antd";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
+
+import CloudinaryAPI from "../CloudinaryAPI";
 import Title from "../components/Title";
-import CatImage from "../components/CatImage";
 
 import catHead from "../images/cat.png";
 import catHead2 from "../images/whitecat.png";
 import "../App.css";
+import AnimatedCats from "../components/AnimatedCats";
+
+type Img = {
+  public_id: string;
+  created_at: string;
+};
 
 const AskCat = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [askCount, setAskCount] = useState(0);
-  const [imgIsReady, setImgIsReady] = useState(false);
+  const [askCount, setAskCount] = useState(1);
   const [imgsCount, setImgsCount] = useState(0);
+  const [img, setImg] = useState<Img>();
+
+  const catName = "Roulette";
+
+  const btnLabel =
+    (askCount === 1 && "And Yesterday?") ||
+    (askCount === 2 && "And the day before?") ||
+    (askCount > 2 &&
+      `And the day before ${[...Array(askCount -2)].map((c) => "before")}?`);
+
+  useEffect(() => {
+    const getImages = async () => {
+      const { list, error } = await CloudinaryAPI.list();
+      if (error) {
+        return;
+      }
+
+      const image = list
+        .filter((el: Img) =>
+          el.public_id.startsWith(catName.trim().toLowerCase())
+        )
+        .sort(
+          (a: Img, b: Img) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        )[askCount - 1];
+
+      setImg(image);
+      setImgsCount(list.length);
+    };
+    getImages();
+  }, [askCount]);
 
   const handleAskCat = () => {
     setIsVisible(!isVisible);
   };
+  console.log(askCount < imgsCount);
 
   return (
-    <>
-      <div className="ribbon">
-        {[...Array(10)].map((_, idx) => (
-          <img key={idx} src={catHead} className="App-logo" alt="logo" />
-        ))}
-      </div>
+    <CloudinaryContext cloudName="lpot">
+      <AnimatedCats className="ribbon" catHead={catHead} />
 
       <div className="App-content">
-        {isVisible && (
+        {!isVisible ? (
+          <Button type="ghost" size="large" onClick={() => handleAskCat()}>
+            How is {catName} today?
+          </Button>
+        ) : (
           <>
-            <Title
-              askCount={askCount}
-              catName={"Roulette"}
-              imgIsReady={imgIsReady}
-            />
-            <CatImage
-              onImgReady={(_count) => {setImgIsReady(true); setImgsCount(_count)}}
-              askCount={askCount}
-              catName={"Roulette"}
-            />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "20px",
-                marginTop: "20px",
-              }}
-            >
-              {askCount < imgsCount ? (
+            <Title askCount={askCount} catName={catName} />
+
+            <Image style={{ height: "300px" }} publicId={img?.public_id} />
+            <div className="buttons">
+              {askCount + 1 < imgsCount ? (
                 <Button
                   type="ghost"
                   size="large"
-                  onClick={() => {
-                    setAskCount((prev) => ++prev);
-                    setImgIsReady(false);
-                  }}
+                  onClick={() => setAskCount((prev) => ++prev)}
                 >
-                  Again?
+                  {btnLabel}
                 </Button>
               ) : (
                 <Button
@@ -69,42 +90,18 @@ const AskCat = () => {
                   onClick={() => {
                     setIsVisible(false);
                     setAskCount(0);
-                    setImgIsReady(false);
                   }}
                 >
                   Go Back
                 </Button>
               )}
-              {!!askCount && (
-                <Button
-                  type="ghost"
-                  size="large"
-                  onClick={() => {
-                    setIsVisible(false);
-                    setAskCount(0);
-                    navigate("/search", { replace: true });
-                  }}
-                >
-                  Check others cats
-                  <RightOutlined />
-                </Button>
-              )}
             </div>
           </>
         )}
-        {!isVisible && (
-          <Button type="ghost" size="large" onClick={() => handleAskCat()}>
-            How is Roulette?
-          </Button>
-        )}
       </div>
 
-      <div className="ribbon2">
-        {[...Array(10)].map((_, idx) => (
-          <img key={idx} src={catHead2} className="App-logo" alt="logo" />
-        ))}
-      </div>
-    </>
+      <AnimatedCats className="ribbon2" catHead={catHead2} />
+    </CloudinaryContext>
   );
 };
 

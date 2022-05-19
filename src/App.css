@@ -77,3 +77,10 @@ html {
   justify-content: center;
   height: calc(100vh - 210px);
 }
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}

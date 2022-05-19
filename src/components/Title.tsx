@@ -7,16 +7,15 @@ const style = {
 type TitleProps = {
   askCount: number;
   catName: string;
-  imgIsReady: boolean;
 };
 
-let timeout: ReturnType<typeof setTimeout>;
+// let timeout: ReturnType<typeof setTimeout>;
 
 const getRandom = (list: Array<string>) => {
   const idx = Math.floor(Math.random() * list.length);
   return list[idx];
 };
-const Title = ({ askCount, catName, imgIsReady }: TitleProps) => {
+const Title = ({ askCount, catName }: TitleProps) => {
   const titles = useMemo(
     () => [
       `${catName} is fine`,
@@ -29,22 +28,22 @@ const Title = ({ askCount, catName, imgIsReady }: TitleProps) => {
   );
 
   const randomTitle = getRandom(titles);
-  const [title, setTitle] = useState(randomTitle);
+  // const [title, setTitle] = useState(randomTitle);
 
-  useEffect(() => {
-    let increment = 0;
-    const getTitle = () => {
-      ++increment;
-      setTitle(getRandom(titles));
-      timeout = setTimeout(getTitle, 50);
-      if (imgIsReady || increment > 12) {
-        clearTimeout(timeout);
-      }
-    };
-    getTitle();
-  }, [askCount, titles, imgIsReady]);
+  // useEffect(() => {
+  //   let increment = 0;
+  //   const getTitle = () => {
+  //     ++increment;
+  //     setTitle(getRandom(titles));
+  //     timeout = setTimeout(getTitle, 50);
+  //     if (increment > 12) {
+  //       clearTimeout(timeout);
+  //     }
+  //   };
+  //   getTitle();
+  // }, [askCount, titles]);
 
-  return <h1 style={style}>{title}</h1>;
+  return <h1 style={style}>{randomTitle}</h1>;
 };
 
 export default Title;
