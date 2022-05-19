@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/how-is-roulette/static/css/main.0f3d4935.css",
-    "main.js": "/how-is-roulette/static/js/main.62b3444c.js",
+    "main.css": "/how-is-roulette/static/css/main.90770df3.css",
+    "main.js": "/how-is-roulette/static/js/main.83f1b0f9.js",
     "static/media/whitecat.png": "/how-is-roulette/static/media/whitecat.a41555ab0fbc357fbcb7.png",
     "static/media/cat.png": "/how-is-roulette/static/media/cat.cdc8ac65c6abd8f87ed6.png",
     "index.html": "/how-is-roulette/index.html",
-    "main.0f3d4935.css.map": "/how-is-roulette/static/css/main.0f3d4935.css.map",
-    "main.62b3444c.js.map": "/how-is-roulette/static/js/main.62b3444c.js.map"
+    "main.90770df3.css.map": "/how-is-roulette/static/css/main.90770df3.css.map",
+    "main.83f1b0f9.js.map": "/how-is-roulette/static/js/main.83f1b0f9.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f3d4935.css",
-    "static/js/main.62b3444c.js"
+    "static/css/main.90770df3.css",
+    "static/js/main.83f1b0f9.js"
   ]
 }
